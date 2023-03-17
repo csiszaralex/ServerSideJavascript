@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+.link:hover {
+  color: #0077b6;
+  font-weight: bold;
+}
+
+th {
+  text-align: center;
+}
+td {
+  vertical-align: baseline;
+}
+td:has(button.btn-outline-warning) {
+  text-align: center;
+  width: 9rem;
+}
+td:has(button.btn-outline-primary),
+td:has(button.btn-outline-danger) {
+  text-align: center;
+  width: 7rem;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}

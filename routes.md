@@ -17,8 +17,8 @@
 |  GET   | /kocsi/:vonatId          | A `vonatId`-jű vonat kocsijait listázza ki                     | getVonatMW, getKocsikMW |
 |  POST  | /kocsi/:vonatId          | Új kocsi létrehozása a `vonatId`-jű vonathoz                   | getVonatMW, saveKocsiMW |
 |  GET   | /kocsi/:vonatId/:kocsiId | A `vonatId`-jű vonathoz tartozó `kocsiId`-jű kocsi lekérdezése | getVonatMW, getKocsiMW  |
-| PATCH  | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi szerkesztése                              | saveKocsiMW             |
-| DELETE | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi törlése                                   | delKocsiMW              |
+| PATCH  | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi szerkesztése                              | getKocsiMW, saveKocsiMW |
+| DELETE | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi törlése                                   | getKocsiMW, delKocsiMW  |
 
 PATCH esetén csak a megváltozatott adatok lesznek módosítva, azaz nem szükséges küldeni a változatlan adatokat.
 

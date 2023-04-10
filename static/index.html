@@ -27,12 +27,13 @@
         Mód
       </button>
     </header>
-    <article>
+    <article class="d-flex flex-column align-items-center">
       <table class="table table-striped table-hover w-75 mx-auto">
         <tr>
           <th>Szám</th>
           <th>Üzemanyag</th>
           <th>Megtett km</th>
+          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -54,8 +55,18 @@
               <a href="kocsik.html"><i class="fa-solid fa-train"></i> Kocsik</a>
             </button>
           </td>
+          <td>
+            <button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Törlés</button>
+          </td>
         </tr>
       </table>
+      <button
+        class="btn btn-outline-success mt-3"
+        data-bs-toggle="modal"
+        data-bs-target="#editTrain"
+      >
+        <i class="fa-solid fa-circle-plus"></i> Új
+      </button>
     </article>
     <footer>
       <div class="link text-end"><i class="fa-sharp fa-solid fa-copyright"></i> Alex Csiszár</div>

@@ -28,7 +28,7 @@ module.exports = function (app) {
   app.get('/vonat/:vonatid', getVonatMW(objRepo));
   app.patch('/vonat/:vonatid', getVonatMW(objRepo), saveVonatMW(objRepo));
   app.delete('/vonat/:vonatid', getVonatMW(objRepo), delVonatMW(objRepo));
-  app.get('/kocsi', renderMW(objRepo, 'kocsik'));
+  app.get('/kocsi', renderMW(objRepo, 'kocsi'));
   app.get('/kocsi/:vonatid', getVonatMW(objRepo), getKocsikMW(objRepo));
   app.post('/kocsi/:vonatid', getVonatMW(objRepo), saveKocsiMW(objRepo));
   app.get('/kocsi/:vonatid/:kocsiid', getVonatMW(objRepo), getKocsiMW(objRepo));

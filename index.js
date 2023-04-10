@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 
 app.use(express.static('static'));
 
-//TODO ejs
-// app.use(bodyParser.urlencoded());
-// app.use(bodyParser.json());
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 require('./routes/index')(app);
 

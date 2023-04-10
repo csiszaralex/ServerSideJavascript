@@ -3,7 +3,8 @@ const Kocsi = {
   Szam: Number,
   Ulohelyek: Number,
   Helyjegy: Boolean,
-  vonat: Vonat
+  //TODO vonat majd Vonat típus lesz
+  vonat: String
 }
 
 module.exports = Kocsi;

@@ -4,6 +4,7 @@
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-      next();
+    if (res.locals.vonat._id) console.log('DEL vonat - ' + req.params['vonatid']);
+    res.redirect('/');
   };
 };

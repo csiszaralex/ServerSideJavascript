@@ -1,0 +1,52 @@
+<%- include('header', {header:
+  {text: kocsi._id ? `${kocsi.szam} számú kocsi szerkesztése` : 'Új kocsi', back: `/kocsi/${vonat._id}`}
+  }) %>
+
+<form class="w-50 mx-auto" method="post" action="/kocsi/edit/<%= vonat._id %>/<%= kocsi._id ? kocsi._id : '' %>">
+  <div class="mb-3">
+    <label for="sorszam" class="form-label">Sorszám</label>
+    <input
+      type="number"
+      class="form-control"
+      id="sorszam"
+      placeholder="1"
+      name="sorszam"
+      autofocus
+      value="<%= kocsi.sorszam ? kocsi.sorszam : '' %>"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="szam" class="form-label">Szám</label>
+    <input
+      type="text"
+      class="form-control"
+      id="szam"
+      placeholder="401"
+      name="szam"
+      value="<%= kocsi.szam ? kocsi.szam : '' %>"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="ulohelyek" class="form-label">Ülőhelyek</label>
+    <input
+      type="number"
+      class="form-control"
+      id="ulohelyek"
+      placeholder="100"
+      name="ulohelyek"
+      value="<%= kocsi.ulohelyek ? kocsi.ulohelyek : '' %>"
+    />
+  </div>
+  <%- include('error', {error}) %>
+  <div class="mb-3 d-flex justify-content-around">
+    <div>
+      <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" <% if(kocsi.helyjegy){ %>checked <% } %> name="helyjegy" />
+      <label class="btn btn-outline-info" for="btn-check-outlined" >Helyjegy</label>
+    </div>
+    <button type="submit" class="btn btn-outline-success">
+      <i class="fa-solid fa-floppy-disk"></i> Mentés
+    </button>
+  </div>
+</form>
+
+<%- include('footer') %>

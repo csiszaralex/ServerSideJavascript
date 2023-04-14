@@ -1,4 +1,4 @@
-<%- include('headerk') -%>
+<%- include('header', {header: {text: `${vonat.szam} számú vonat kocsijai`, back: "/"}}) %>
 
 <article class="d-flex flex-column align-items-center">
   <table class="table table-striped table-hover w-75">
@@ -11,23 +11,36 @@
       <th></th>
     </tr>
     <tr>
-      <td>1</td>
-      <td>413</td>
-      <td>97</td>
-      <td>Igen</td>
-      <td>
-        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editWagon">
-          <i class="fa-solid fa-pen-to-square"></i> Szerkesztés
-        </button>
-      </td>
-      <td>
-        <button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Törlés</button>
-      </td>
+      <% kocsik.forEach(kocsi => { %>
+
+        <td><%= kocsi.sorszam%></td>
+        <td><%= kocsi.szam %></td>
+        <td><%= kocsi.ulohelyek %></td>
+        <td class="text-center fs-5">
+          <% if(kocsi.helyjegy) { %>
+            <i class="fa-solid fa-square-check text-success"></i>
+          <% } else { %>
+            <i class="fa-solid fa-square-xmark text-danger"></i>
+          <% } %>
+        </td>
+        <td>
+          <button class="btn btn-outline-warning">
+            <a href="/kocsi/edit/<%= vonat._id %>/<%= kocsi._id %>"><i class="fa-solid fa-pen-to-square"></i> Szerkesztés</a>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger">
+            <a href="/kocsi/delete/<%= vonat._id %>/<%= kocsi._id %>"><i class="fa-solid fa-trash"></i> Törlés</a>
+          </button>
+        </td>
+      </tr>
+        <% }); %>
     </tr>
   </table>
-  <button class="btn btn-outline-success mt-3" data-bs-toggle="modal" data-bs-target="#editWagon">
-    <i class="fa-solid fa-circle-plus"></i> Új
+
+  <button class="btn btn-outline-success mt-3">
+    <a href="/kocsi/edit/<%= vonat._id %>"><i class="fa-solid fa-circle-plus"></i> Új</a>
   </button>
 </article>
 
-<%- include('kocsiModal') -%> <%- include('footer') -%>
+<%- include('footer') %>

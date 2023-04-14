@@ -1,11 +1,10 @@
 const Kocsi = {
-  Sorszam: Number,
-  Szam: Number,
-  Ulohelyek: Number,
-  Helyjegy: Boolean,
+  sorszam: Number,
+  szam: Number,
+  ulohelyek: Number,
+  helyjegy: Boolean,
   //TODO vonat majd Vonat típus lesz
   vonat: String,
 };
 
 module.exports = Kocsi;
-

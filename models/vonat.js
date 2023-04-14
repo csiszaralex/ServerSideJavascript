@@ -1,6 +1,7 @@
 const Vonat = {
-  Szam: Number,
-  Uzemanyag: String,
+  szam: Number,
+  uzemanyag: String,
+  km: Number,
 };
 
 module.exports = Vonat;

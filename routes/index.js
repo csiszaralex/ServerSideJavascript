@@ -8,8 +8,8 @@ const getKocsikMW = require('../middleware/kocsi/getKocsikMW');
 const saveKocsiMW = require('../middleware/kocsi/saveKocsiMW');
 const delKocsiMW = require('../middleware/kocsi/delKocsiMW');
 
-const Kocsi = require('../models/kocsi');
-const Vonat = require('../models/vonat');
+const KocsiModel = require('../models/kocsi');
+const VonatModel = require('../models/vonat');
 
 const express = require('express');
 
@@ -18,8 +18,8 @@ const express = require('express');
  */
 module.exports = function (app) {
   const objRepo = {
-    kocsiModel: Kocsi,
-    vonatModel: Vonat,
+    kocsi: KocsiModel,
+    vonat: VonatModel,
   };
 
   app.get('/', getVonatokMW(objRepo), renderMW(objRepo, 'index'));

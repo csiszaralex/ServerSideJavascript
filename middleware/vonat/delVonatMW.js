@@ -2,8 +2,8 @@
  * Remove a vonat from the database
  */
 
-module.exports = function (objectrepository) {
-  return function (req, res, next) {
+module.exports = objectrepository => {
+  return (req, res, next) => {
     if (!res.locals.vonat._id) return res.redirect('/');
 
     try {

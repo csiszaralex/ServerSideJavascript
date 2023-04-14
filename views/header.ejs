@@ -14,14 +14,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body class="d-flex flex-column justify-content-between align-items-stretch p-4" daa>
     <header class="text-center m-5 d-flex justify-content-between">
+      <% if(header.back) { %>
       <button class="btn btn-outline-danger">
-        <a href="/"><i class="fa-solid fa-delete-left"></i> Vissza</a>
+        <a href="<%= header.back %>"><i class="fa-solid fa-delete-left"></i> Vissza</a>
       </button>
-      <h1>Vonatok</h1>
+      <% } else { %>
+      <div></div>
+      <% } %>
+      <h1><%= header.text %></h1>
       <div></div>
     </header>
   </body>

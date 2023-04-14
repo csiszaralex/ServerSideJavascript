@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.locals.error = {};

@@ -1,5 +1,5 @@
 <%- include('header', {header:
-  {text: vonat._id ? `${vonat.szam} számú vonat szerkesztése` : 'Új vonat', back: "/"}
+  {text: vonat._id ? `${vonat.szam} számú vonat szerkesztése` : 'Új vonat', back: "/"}, error
   }) %>
 
 <form class="w-50 mx-auto" method="post" action="/vonat/edit/<%= vonat._id ? vonat._id : '' %>">
@@ -38,7 +38,6 @@
       value="<%= vonat.km ? vonat.km : '' %>"
     />
   </div>
-  <%- include('error', {error}) %>
   <button type="submit" class="btn btn-outline-success">
     <i class="fa-solid fa-floppy-disk"></i> Mentés
   </button>

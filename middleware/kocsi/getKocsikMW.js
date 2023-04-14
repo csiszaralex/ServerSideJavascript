@@ -4,8 +4,9 @@ const requireOption = require('../requireOption');
  * Load all kocsi from the database
  */
 
-module.exports = objectrepository => {
-  //TODO error handling
+
+module.exports = function (objectrepository) {
+
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
   return async (req, res, next) => {

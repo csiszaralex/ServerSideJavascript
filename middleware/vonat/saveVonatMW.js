@@ -4,7 +4,7 @@
 
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
+module.exports = objectrepository => {
   const VonatModel = requireOption(objectrepository, 'vonat');
 
   return function (req, res, next) {

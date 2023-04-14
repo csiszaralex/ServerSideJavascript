@@ -4,10 +4,12 @@ const requireOption = require('../requireOption');
  * Load all kocsi from the database
  */
 
+
 module.exports = function (objectrepository) {
+
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
-  return async function (req, res, next) {
+  return async (req, res, next) => {
     if (!res.locals.vonat._id) return next('ERROR: Vonat not found');
 
     try {

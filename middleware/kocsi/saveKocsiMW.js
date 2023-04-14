@@ -4,7 +4,7 @@ const requireOption = require('../requireOption');
  * Save or update a kocsi
  */
 
-module.exports = function (objectrepository) {
+module.exports = objectrepository => {
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
   return function (req, res, next) {

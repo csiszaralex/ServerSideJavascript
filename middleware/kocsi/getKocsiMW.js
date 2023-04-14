@@ -4,15 +4,10 @@ const requireOption = require('../requireOption');
  * Load a kocsi from the database
  */
 
-module.exports = function (objectrepository) {
+module.exports = objectrepository => {
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
-  return async function (req, res, next) {
-    if (!req.params['kocsiid']) {
-      res.locals.kocsi = {};
-      return next();
-    }
-
+  return async (req, res, next) => {
     try {
       const kocsi = await KocsiModel.findById(req.params['kocsiid']);
       res.locals.kocsi = kocsi;

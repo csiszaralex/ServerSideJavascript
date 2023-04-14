@@ -7,6 +7,7 @@ const requireOption = require('../requireOption');
 module.exports = function (objectrepository) {
   const KocsiModel = requireOption(objectrepository, 'kocsi');
   return async function (req, res, next) {
+
     if (!res.locals.vonat._id) return res.redirect('/');
 
     try {

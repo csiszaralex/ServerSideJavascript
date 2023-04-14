@@ -5,7 +5,6 @@ const requireOption = require('../requireOption');
  */
 
 module.exports = function (objectrepository) {
-  //TODO error handling
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
   return async function (req, res, next) {

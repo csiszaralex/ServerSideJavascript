@@ -2,7 +2,11 @@
  * Save or update a vonat
  */
 
+const requireOption = require('../requireOption');
+
 module.exports = function (objectrepository) {
+  const VonatModel = requireOption(objectrepository, 'vonat');
+
   return function (req, res, next) {
     if (!req.body.szam || !req.body.uzemanyag || !req.body.km) {
       if (req.body.szam || req.body.uzemanyag || req.body.km)
@@ -10,18 +14,21 @@ module.exports = function (objectrepository) {
       return next();
     }
     //TODO Ha csak egyik üres akkkor a többit töltse vissza
-    if (res.locals.vonat._id)
-      console.log(
-        'SAVE vonat - ' +
-          res.locals.vonat._id +
-          ' ' +
-          req.body.szam +
-          ' ' +
-          req.body.uzemanyag +
-          ' ' +
-          req.body.km,
-      );
-    else console.log('NEW vonat - ' + req.body.szam + ' ' + req.body.uzemanyag + ' ' + req.body.km);
+    //TODO validate number
+    //TODO audit DB (who, when, what)
+
+    const vonat = res.locals.vonat._id ? res.locals.vonat : new VonatModel();
+    vonat.szam = req.body.szam;
+    vonat.uzemanyag = req.body.uzemanyag;
+    vonat.km = req.body.km;
+
+    console.log(vonat);
+
+    try {
+      vonat.save();
+    } catch (err) {
+      return next(err);
+    }
     res.redirect('/');
   };
 };

@@ -22,8 +22,6 @@ module.exports = function (objectrepository) {
     vonat.uzemanyag = req.body.uzemanyag;
     vonat.km = req.body.km;
 
-    console.log(vonat);
-
     try {
       vonat.save();
     } catch (err) {

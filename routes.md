@@ -5,22 +5,16 @@
 
 # ROUTING
 
-| Tipus  | Link                     | Mit Csinál?                                                    | Middleware              |
-| :----: | ------------------------ | -------------------------------------------------------------- | ----------------------- |
-|  GET   | /                        | index.html                                                     | renderMW                |
-|  GET   | /vonat                   | Az összes vonat lekérdezése                                    | getVonatokMW            |
-|  POST  | /vonat                   | Új vonat létrehozása                                           | saveVonatMW             |
-|  GET   | /vonat/:vonatId          | A `vonatId`-jű vonat lekérdezése                               | getVonatMW              |
-| PATCH  | /vonat/:vonatId          | A `vonatId`-jű vonat adatainak módosítása                      | getVonatMW, saveVonatMW |
-| DELETE | /vonat/:vonatId          | A `vonatId`-jű vonat és a hozzá kapcsolódó kocsik törlése      | getVonatMW, delVonatMW  |
-|  GET   | /kocsi                   | kocsik.html                                                    | renderMW                |
-|  GET   | /kocsi/:vonatId          | A `vonatId`-jű vonat kocsijait listázza ki                     | getVonatMW, getKocsikMW |
-|  POST  | /kocsi/:vonatId          | Új kocsi létrehozása a `vonatId`-jű vonathoz                   | getVonatMW, saveKocsiMW |
-|  GET   | /kocsi/:vonatId/:kocsiId | A `vonatId`-jű vonathoz tartozó `kocsiId`-jű kocsi lekérdezése | getVonatMW, getKocsiMW  |
-| PATCH  | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi szerkesztése                              | getKocsiMW, saveKocsiMW |
-| DELETE | /kocsi/:kocsiId          | A `kocsiId`-jű kocsi törlése                                   | getKocsiMW, delKocsiMW  |
-
-PATCH esetén csak a megváltozatott adatok lesznek módosítva, azaz nem szükséges küldeni a változatlan adatokat.
+| Tipus | Link                            | Mit Csinál?                                                                          | Middleware                          |
+| :---: | ------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------- |
+|  GET  | /                               | index.html - Vonatok megjelenítése                                                   | GetVonatokMW, renderMW              |
+|  GET  | /vonat/edit/:vonatId            | vedit.html - A `vonatId`-jű vonat szerkesztése (Ha nincs `vonatID`, akkor új vonat)  | getVonatMW, renderMW                |
+| POST  | /vonat/edit/:vonatId            | A `vonatId`-jű vonat szerkesztése, `vonatId` nélkül új létrehozása                   | getVonatMW, saveVonatMW             |
+|  GET  | /vonat/delete/:vonatId          | A `vonatId`-jű vonat és annak kocsijainak törlése                                    | getVonatMW, delVonatMW              |
+|  GET  | /kocsi/:vonatId                 | kocsi.html - A `vonatId`-jű vonat kocsijainak megjelenítése                          | getVonatMW, getKocsikMW, renderMW   |
+|  GET  | /kocsi/edit/:vonatId/:kocsiId?  | kedit.html - A `vonatId`-jű vonat `kocsiId`-jű kocsijának szerkesztése / létrehozása | getVonatMW, getKocsiMW, renderMW    |
+| POST  | /kocsi/edit/:vonatId/:kocsiId?  | A `kocsiId`-jű kocsi szerkesztése / létrehozása                                      | getVonatMW, getKocsiMW, saveKocsiMW |
+|  GET  | /kocsi/delete/:vonatId/:kocsiId | A `kocsiId`-jű kocsi törlése                                                         | getVonatMW, getKocsiMW, delKocsiMW  |
 
 # Middlewarek
 
@@ -35,5 +29,3 @@ PATCH esetén csak a megváltozatott adatok lesznek módosítva, azaz nem szüks
 |  getKocsiMW  | Lekérdezi az adott kocsit, ha nincs ilyen ID-jű kocsi hibával tér vissza                                                   |
 | saveKocsiMW  | Menti az új kocsit, vagy módosítja a meglévőt, hibás létrehozás, vagy nemlétező ID-jű módosítás esetén hibával tér vissza  |
 |  delKocsiMW  | Törli az adott kocsit                                                                                                      |
-
-<!-- TODO hibával tér vissza? -->

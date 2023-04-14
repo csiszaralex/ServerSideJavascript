@@ -1,19 +1,28 @@
+const requireOption = require('../requireOption');
+
 /**
  * Load a kocsi from the database
  */
 
 module.exports = function (objectrepository) {
-  return function (req, res, next) {
-    if (!req.params['kocsiid']) res.locals.kocsi = {};
-    else
-      res.locals.kocsi = {
-        _id: 'asd',
-        sorszam: 1,
-        szam: 401,
-        ulohelyek: 96,
-        helyjegy: true,
-        vonat: '1',
-      };
-    next();
+  const KocsiModel = requireOption(objectrepository, 'kocsi');
+
+  return async function (req, res, next) {
+    if (!req.params['kocsiid']) {
+      res.locals.kocsi = {};
+      return next();
+    }
+
+    try {
+      const kocsi = await KocsiModel.findById(req.params['kocsiid']);
+      res.locals.kocsi = kocsi;
+      return next();
+    } catch (err) {
+      if (err.name === 'CastError') {
+        res.locals.kocsi = {};
+        return next();
+      }
+      return next(err);
+    }
   };
 };

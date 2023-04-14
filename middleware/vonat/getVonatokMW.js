@@ -9,8 +9,7 @@ module.exports = objectrepository => {
 
   return async (req, res, next) => {
     try {
-      const vonatok = await VonatModel.find({});
-      res.locals.vonatok = vonatok;
+      res.locals.vonatok = await VonatModel.find({});
       return next();
     } catch (err) {
       return next(err);

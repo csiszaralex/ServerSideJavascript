@@ -1,5 +1,5 @@
 <%- include('header', {header:
-  {text: kocsi._id ? `${kocsi.szam} számú kocsi szerkesztése` : 'Új kocsi', back: `/kocsi/${vonat._id}`}
+  {text: kocsi._id ? `${kocsi.szam} számú kocsi szerkesztése` : 'Új kocsi', back: `/kocsi/${vonat._id}`}, error
   }) %>
 
 <form class="w-50 mx-auto" method="post" action="/kocsi/edit/<%= vonat._id %>/<%= kocsi._id ? kocsi._id : '' %>">
@@ -37,7 +37,6 @@
       value="<%= kocsi.ulohelyek ? kocsi.ulohelyek : '' %>"
     />
   </div>
-  <%- include('error', {error}) %>
   <div class="mb-3 d-flex justify-content-around">
     <div>
       <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" <% if(kocsi.helyjegy){ %>checked <% } %> name="helyjegy" />

@@ -22,16 +22,32 @@ module.exports = function (app) {
     vonatModel: Vonat,
   };
 
-  app.get('/', renderMW(objRepo, 'index'));
-  app.get('/vonat', getVonatokMW(objRepo));
-  app.post('/vonat', saveVonatMW(objRepo));
-  app.get('/vonat/:vonatid', getVonatMW(objRepo));
-  app.patch('/vonat/:vonatid', getVonatMW(objRepo), saveVonatMW(objRepo));
-  app.delete('/vonat/:vonatid', getVonatMW(objRepo), delVonatMW(objRepo));
-  app.get('/kocsi', renderMW(objRepo, 'kocsi'));
-  app.get('/kocsi/:vonatid', getVonatMW(objRepo), getKocsikMW(objRepo));
-  app.post('/kocsi/:vonatid', getVonatMW(objRepo), saveKocsiMW(objRepo));
-  app.get('/kocsi/:vonatid/:kocsiid', getVonatMW(objRepo), getKocsiMW(objRepo));
-  app.patch('/kocsi/:kocsiid', getKocsiMW(objRepo), saveKocsiMW(objRepo));
-  app.delete('/kocsi/:kocsiid', getKocsiMW(objRepo), delKocsiMW(objRepo));
+  app.get('/', getVonatokMW(objRepo), renderMW(objRepo, 'index'));
+  app.use(
+    '/vonat/edit/:vonatid?',
+    getVonatMW(objRepo),
+    saveVonatMW(objRepo),
+    renderMW(objRepo, 'vedit'),
+  );
+  app.use('/vonat/delete/:vonatid', getVonatMW(objRepo), delVonatMW(objRepo));
+  app.use(
+    '/kocsi/delete/:vonatid/:kocsiid',
+    getVonatMW(objRepo),
+    getKocsiMW(objRepo),
+    delKocsiMW(objRepo),
+  );
+  app.use(
+    '/kocsi/edit/:vonatid/:kocsiid?',
+    getVonatMW(objRepo),
+    getKocsiMW(objRepo),
+    saveKocsiMW(objRepo),
+    renderMW(objRepo, 'kedit'),
+  );
+  app.use(
+    '/kocsi/:vonatid',
+    getVonatMW(objRepo),
+    getKocsikMW(objRepo),
+    saveKocsiMW(objRepo),
+    renderMW(objRepo, 'kocsi'),
+  );
 };

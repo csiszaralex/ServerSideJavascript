@@ -1,10 +1,15 @@
-const Kocsi = {
+const Schema = require('mongoose').Schema;
+const db = require('../config/db');
+
+const Kocsi = db.model('Kocsi', {
   sorszam: Number,
   szam: Number,
   ulohelyek: Number,
   helyjegy: Boolean,
-  //TODO vonat majd Vonat típus lesz
-  vonat: String,
-};
+  _vonat: {
+    type: Schema.Types.ObjectId,
+    ref: 'Vonat',
+  },
+});
 
 module.exports = Kocsi;

@@ -14,7 +14,7 @@ module.exports = objectrepository => {
 
     try {
       const vonat = await VonatModel.findById(req.params['vonatid']);
-      res.locals.vonat = vonat;
+      res.locals.vonat = vonat || {};
       return next();
     } catch (err) {
       if (err.name === 'CastError') {

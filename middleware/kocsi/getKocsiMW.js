@@ -8,6 +8,11 @@ module.exports = objectrepository => {
   const KocsiModel = requireOption(objectrepository, 'kocsi');
 
   return async (req, res, next) => {
+    if(!req.params['kocsiid']) {
+      res.locals.kocsi = {};
+      return next();
+    }
+
     try {
       const kocsi = await KocsiModel.findById(req.params['kocsiid']);
       res.locals.kocsi = kocsi || {};
